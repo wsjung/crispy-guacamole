@@ -1,0 +1,72 @@
+<head>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<h1>Group Project 1 </h1>
+<div id="bodyspace">
+	<img src="happydoggo.jpg" alt="we are sad bois" class="center">
+	<ol>
+	  <li>What command can you type into the terminal to check if apache is currently running?</li>
+	  <ul>
+	  	<li><code>systemctl status apache2</code></li>
+	  </ul>
+	    <li>Apache implements the HTTP protocol. The protocol is extremely simple, with just a few commands. What is the difference between the GET, POST, and HEAD commands?</li>
+	  <ul>
+	  	<li>GET is used to request data from a specified source, POST is used to send data to a server to create or update a resource, and HEAD makes the same request as GET, but without the response body.</li>
+	  </ul>
+		  
+	  <li>To Apache, what is the difference between ServerRoot and DocumentRoot?</li>
+	  <ul>
+	  	<li>	ServerRoot is the top of the directory tree under which the server’s configuration, error, and log files are kept.  Basically the base directory for the server installation.</li>
+	  	<li>DocumentRoot is the directory that forms the main document tree visible from the web. This is used to specify which URL refers to which html file.</li>
+	  </ul>
+		  
+	  <li>What port does your web server listen to for HTTP connections from browsers by default? Test it out by typing this into your browser: http://ip_addr:port, where ip_addr is the IP address of your server, and port is the port number given in the configuration file. Try changing the port number to something else. Test it again in your browser, then change it back. The fact that you don't usually need to specify the port when going to a URL should tell you that the default port to access web servers is the one given in the config file.</li>
+	  <ul>
+	  	<li>Port 80 (https://http://18.208.137.134:80)</li>
+	  </ul>
+		  
+	  <li>In what directory do you need to place all of your HTML and PHP documents for Apache to serve them up? Test it by navigating to this directory, and if your hunch is right, you should find that default It Worked! HTML document you saw when you pointed your web browser to your IP address.</li>
+	  <ul>
+	  	<li>/var/www/html</li>
+	  </ul>
+		  
+	    <li>What file contains all of Apache's traffic logs? What about apache's error logs? These things tend to get very long, with the most recent logged events being appended to the end of the file. What are some ways you can view the last few lines of a file?</li>
+	  <ul>
+	  	<li>/var/log/apache2/access.log contains all the traffic logs</li>
+	  	<li>/var/log/error.log contains the apache error logs</li>
+	  	<li>we can use the tail command which by default displays the last few lines of a file</li>
+	  </ul>
+		  
+	    <li>What is a Directory Index file? Why would it be nice to have one in each directory?</li>
+	  <ul>
+	  	<li>an index file in each folder enables you to map each folder individually-------Having an index file in all of your directories also keeps the public from seeing a list of every file and directory within a directory. Without an index file, when someone types the URL that goes to a folder/directory in most cases it will list every file in there. s</li>
+	  </ul>
+		  
+	     <li>How do you give every user on your Linux server their own web space? Enable it now!</li>
+	  <ul>
+	  	<li>We can give every user on the server their own web space by using the UserDir directive. Visitors to a URL http://example.com/~username/ will get content out of the home directory of the user "username", out of the subdirectory specified by the UserDir directive.</li>
+	  	<li>First we enable Userdir module for our server using the command <code>a2enmod userdir</code>. Once the userdir module is enabled, we check that the config file located in /etc/apache2/mods-available/userdir.conf is set up correctly. In root (~) we create a directory named after the userdir directory name in userdir.conf (in our case that is public_html and we load our files in the directory. 
+	  </ul>
+		  
+	 <li>How do you create a password-protected directory (like I did for the class notes)? Look into htpasswd and .htaccess files.</li>
+	  <ul>
+	  	<li>First you setup the user and password file .htpasswd using htpasswd and change the permissions so that only the owner can write to the file and the rest of the users can only read. We move the .htpasswd to the password-protected directory. Then, in our apache2.conf file, we add a Directory code block to tell Apache to process the htaccess file and to allow htaccess to set the authentication for that directory. </li>
+	  </ul>
+		  
+	   <li>When the browser tries to access a page that doesn't exist, the HTTP protocol issues a 404 error code. Try it by navigating to a non-existent page on your server. Kind of an unhelpful and ungraceful way of telling users a page doesn't exist, right? Well, there's a way to send the browser to a particular page instead. For instance, if you go to this non-existent page on our school's website http://cs.pugetsound.edu/david_awesome.html, you'll just get brought back to the department home page. How do you do the automatic redirect given a 404 error?</li>
+	  <ul>
+	  	<li>We automatically redirect a 404 error by creating a .htaccess file in /var/www/html and writing the following line of code:
+	 
+		<code>ErrorDocument 404 /index.html</code>
+		Then, in our Apache config file (which in our case is /etc/apache2/apache2.conf), we write a Directory code block which points to the /var/www/html directory which has the following command in the block:
+		<code>AllowOverride FileInfo</code>
+
+
+
+
+	  	</li>
+	  </ul>
+	</ol>
+</div>
+</body>
