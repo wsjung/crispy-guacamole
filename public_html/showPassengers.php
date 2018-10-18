@@ -3,6 +3,13 @@
 <body>
 <h2>List of all passengers</h2>
 <p>
+
+    <form action="formHandler.php" method="post">
+        Name: <input type="text" name="name"/><br/>
+        ssn: <input type="text" name="ssn"/><br/>
+    <input type="submit">
+    </form>
+
     <?php
 
         //path to the SQLite database file
@@ -16,7 +23,9 @@
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             //return all passengers, and store the result set
-            $query_str = "select * from passengers;";
+            // echo "$_GET[passenger_ssn]";
+            // $query_str = "select * from passengers;";
+            $query_str = "select * from passengers where ssn='$_GET[passenger_ssn]';";
             $result_set = $db->query($query_str);
 
             //loop through each tuple in result set and print out the data
