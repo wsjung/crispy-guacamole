@@ -24,8 +24,8 @@
 
             //return all passengers, and store the result set
             // echo "$_GET[passenger_ssn]";
-            // $query_str = "select * from passengers;";
-            $query_str = "select * from passengers where ssn='$_GET[passenger_ssn]';";
+            $query_str = "select * from passengers;";
+            // $query_str = "select * from passengers where ssn='$_GET[passenger_ssn]';";
             $result_set = $db->query($query_str);
 
             //loop through each tuple in result set and print out the data
