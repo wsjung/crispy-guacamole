@@ -55,11 +55,14 @@
 			// open connection to the airport databae file
 			$db = new PDO('sqlite:' . $db_file);
 
+			// query string
+			// echo "insert into passengers values ('$f_name','$m_name',$l_name','$ssn'); <br><br>";
+
 			// insert the new passenger
-			$query_str = "insert into passengers values ('$f_name','$m_name',$l_name','$ssn')";
+			$query_str = "insert into passengers values ('$f_name','$m_name','$l_name','$ssn');";
 			$db->query($query_str);
 
-            $result = $db->query("select * from passengers;");
+			// $result = $db->query("select * from passengers;");
 
 			// foreach($result as $tuple) {
 			// 	echo "<font color='blue'>$tuple[ssn]</font> $tuple[f_name] $tuple[m_name] $tuple[l_name]<br/>\n";
