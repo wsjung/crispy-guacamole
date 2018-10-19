@@ -35,7 +35,9 @@
                 echo "ssn is required"; 
             } else if (isset($_SESSION["format_ssn"])) {
                 echo "ssn must be digits of form xxx-xx-xxxx";
-            } ?>    
+            } else if (isset($_SESSION["exists_ssn"])) {
+                echo "passenger with ssn already exists";
+            } ?>
             </span><br><br>
 
     	<input type="submit">

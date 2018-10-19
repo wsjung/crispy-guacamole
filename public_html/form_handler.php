@@ -55,6 +55,8 @@
 			// open connection to the airport databae file
 			$db = new PDO('sqlite:' . $db_file);
 
+			// check that the ssn does not already exist
+
 			// insert query prepared statement
 			$stmt = $db->prepare("insert into passengers (f_name,m_name,l_name,ssn) values (:f_name, :m_name, :l_name, :ssn)");
 			// bind parameters
@@ -63,20 +65,31 @@
 			$stmt->bindParam(':l_name', $l_name);
 			$stmt->bindParam(':ssn', $ssn);
 			// execute query
-			$stmt->execute();
+			$result = $stmt->execute();
+
+			// check that the query worked
+			// true - if query worked
+			// false - if ssn already exists in relation
+			if($result) {
+				// success message
+				echo "Success!";
+
+				// reset session superglobal
+				session_unset();
+				session_destroy();
+			} else {
+				// ssn already exists in table
+				$_SESSION['exists_ssn'] = True;
+
+				// redirect back to the form
+				header('Location: ./passengerForm.php');
+			}
 
 			// $result = $db->query("select * from passengers;");
 
 			// foreach($result as $tuple) {
 			// 	echo "<font color='blue'>$tuple[ssn]</font> $tuple[f_name] $tuple[m_name] $tuple[l_name]<br/>\n";
 			// }
-
-			// success message
-			echo "Success!";
-
-			// reset session superglobal
-			session_unset();
-			session_destroy();
 
 			// disconnect from db
 			$db = null;
@@ -86,6 +99,7 @@
 		}
 		
 	} else {
+		// redirect back to the form
 		header('Location: ./passengerForm.php');
 	}
 
