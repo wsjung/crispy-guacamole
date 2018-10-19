@@ -3,13 +3,6 @@
 <body>
 <h2>List of all passengers</h2>
 <p>
-
-    <form action="formHandler.php" method="post">
-        Name: <input type="text" name="name"/><br/>
-        ssn: <input type="text" name="ssn"/><br/>
-    <input type="submit">
-    </form>
-
     <?php
 
         //path to the SQLite database file
@@ -30,8 +23,9 @@
 
             //loop through each tuple in result set and print out the data
             //ssn will be shown in blue (see below)
+            //update href passes the ssn variable 
             foreach($result_set as $tuple) {
-                 echo "<font color='blue'>$tuple[ssn]</font> $tuple[f_name] $tuple[m_name] $tuple[l_name]<br/>\n";
+                 echo "<font color='blue'>$tuple[ssn]</font> $tuple[f_name] $tuple[m_name] $tuple[l_name] <a href='./createPassenger.php?ssn=$tuple[ssn]'>update</a> <br/>\n";
             }
 
             //disconnect from db

@@ -5,7 +5,7 @@
 </head>
 <body>
     <a href='./showPassengers.php'>Passenger List</a>
-    <a href='./createPassenger.php'>Passenger List</a>
+    <a href='./passengerForm.html'>Create/Update Passenger</a>
     <a href='./runSQL.php'>run SQL queries</a>
 </body>
 </html>
