@@ -4,7 +4,6 @@
 <h2>List of all passengers</h2>
 <p>
     <?php
-
         //path to the SQLite database file
         $db_file = './myDB/airport.db';
 
@@ -25,7 +24,7 @@
             //ssn will be shown in blue (see below)
             //update href passes the ssn variable 
             foreach($result_set as $tuple) {
-                 echo "<font color='blue'>$tuple[ssn]</font> $tuple[f_name] $tuple[m_name] $tuple[l_name] <a href='./createPassenger.php?ssn=$tuple[ssn]'>update</a> <br/>\n";
+                 echo "<font color='blue'>$tuple[ssn]</font> $tuple[f_name] $tuple[m_name] $tuple[l_name] <a href='./passengerForm.php?ssn=$tuple[ssn]'>update</a> <br/>\n";
             }
 
             //disconnect from db

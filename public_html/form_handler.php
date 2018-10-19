@@ -2,8 +2,10 @@
 	// hashmap of errors and error messages
 	$errors = array();
 	// start session to store entry values
-	session_start();
-	$_SESSION = $_POST;
+	// session_start();
+	// $args = $_POST;
+
+	$args = $_POST;
 
 	// check if each entry is not empty
 	if(!empty(trim_data($_POST['f_name']))) {
@@ -12,11 +14,13 @@
 			$f_name = trim_data($_POST['f_name']);
 		} else {
 			$errors['f_name'] = trim_data($_POST['f_name']);
-			$_SESSION['format_f_name'] = True;
+			// $args['format_f_name'] = True;
+			$args['format_f_name'] = True;
 		}
 	} else {
 		$errors['f_name'] = trim_data($_POST['f_name']);
-		$_SESSION['empty_f_name'] = True;
+		// $args['empty_f_name'] = True;
+		$args['empty_f_name'] = True;
 	}
 
 	$m_name = trim_data($_POST['m_name']);
@@ -27,11 +31,11 @@
 			$l_name = trim_data($_POST['l_name']);
 		} else {
 			$errors['l_name'] = trim_data($_POST['l_name']);
-			$_SESSION['format_l_name'] = True;
+			$args['format_l_name'] = True;
 		}
 	} else {
 		$errors['l_name'] = trim_data($_POST['l_name']);
-		$_SESSION['empty_l_name'] = True;
+		$args['empty_l_name'] = True;
 	}
 
 	if(!empty(trim_data($_POST['ssn']))) {
@@ -39,11 +43,11 @@
 			$ssn = trim_data($_POST['ssn']);
 		} else {
 			$errors['ssn'] = trim_data($_POST['ssn']);
-			$_SESSION['format_ssn'] = True;
+			$args['format_ssn'] = True;
 		}
 	} else {
 		$errors['ssn'] = trim_data($_POST['ssn']);
-		$_SESSION['empty_ssn'] = True;
+		$args['empty_ssn'] = True;
 	}
 
 	// empty errors array means all required fields are set
@@ -79,10 +83,10 @@
 				session_destroy();
 			} else {
 				// ssn already exists in table
-				$_SESSION['exists_ssn'] = True;
+				$args['exists_ssn'] = True;
 
 				// redirect back to the form
-				header('Location: ./passengerForm.php');
+				header('Location: ./passengerForm.php?' . http_build_query($args));
 			}
 
 			// $result = $db->query("select * from passengers;");
@@ -100,7 +104,7 @@
 		
 	} else {
 		// redirect back to the form
-		header('Location: ./passengerForm.php');
+		header('Location: ./passengerForm.php?' . http_build_query($args));
 	}
 
 	// trims unnecessary charcters

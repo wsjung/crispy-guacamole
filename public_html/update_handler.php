@@ -74,10 +74,6 @@
 			// success message
 			echo "Success!";
 
-			// reset session superglobal
-			session_unset();
-			session_destroy();
-			session_write_close();
 
 			// disconnect from db
 			$db = null;
