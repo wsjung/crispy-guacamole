@@ -1,13 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,700);
 
 body {
-	background-color: #ffffff;
+	background-color: #dddddd;
 	font-family: 'Open Sans', sans-serif;
 }
 
 
 h1{
-	font-size: 4vw;
+	font-size: 3vw;
 }
 h1 span{
 	background-color: black;
@@ -18,7 +18,7 @@ p.links{
 }
 
 div {
-    background-color: #a8a8a8;
+    background-color: #dddddd;
 }
 
 
@@ -51,14 +51,14 @@ a{
 }
 
 a:visited {
-    color: white
+    color: white;
 }
 a:hover {
-    color: white
+    color: white;
 }
 a:focus {
-    color: white
+    color: white;
 }
 a:active {
-    color: white
+    color: white;
 }
