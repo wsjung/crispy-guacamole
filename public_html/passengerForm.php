@@ -7,7 +7,7 @@
     <p>
         <a href='index.php'>back</a>
     </p>
-<h2>Create new passenger</h2>
+<h2><?php echo (isset($_GET['update'])) ? 'Update existing' : 'Create new ';?> passenger</h2>
 <div>
     <span class="error">* required field</span><br><br>
     <form action="./form_handler.php" method="post">
