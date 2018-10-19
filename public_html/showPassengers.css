@@ -1,0 +1,16 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,700);
+
+body {
+	background-color: #ffffff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 2vw;
+}
+
+
+p span {
+	background-color: #bfbfbf;
+}
+
+.error {
+	color: red;
+}

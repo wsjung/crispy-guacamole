@@ -1,5 +1,24 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,700);
+
 body {
-	background-color: #;
+	background-color: #ffffff;
+	font-family: 'Open Sans', sans-serif;
+}
+
+
+h1{
+	font-size: 4vw;
+}
+h1 span{
+	background-color: black;
+}
+
+p.links{
+	background-color: #bfbfbf;
+}
+
+div {
+    background-color: #a8a8a8;
 }
 
 
@@ -24,6 +43,22 @@ ul li {
 	margin-right: auto;
 }
 
-.error {
-	color: red;
+
+a{
+	color: white
+	text-shadow: 3px 2px red
+
+}
+
+a:visited {
+    color: white
+}
+a:hover {
+    color: white
+}
+a:focus {
+    color: white
+}
+a:active {
+    color: white
 }

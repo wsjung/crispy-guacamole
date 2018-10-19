@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html><head>
+    <link rel="stylesheet" type="text/css" href="showPassengers.css">
+</head>
 <body>
+    <p>
+        <a href='index.php'>back</a>
+    </p>
 <h2>List of all passengers</h2>
 <p>
     <?php
@@ -24,7 +29,9 @@
             //ssn will be shown in blue (see below)
             //update href passes the ssn variable 
             foreach($result_set as $tuple) {
-                 echo "<font color='blue'>$tuple[ssn]</font> $tuple[f_name] $tuple[m_name] $tuple[l_name] <a href='./passengerForm.php?ssn=$tuple[ssn]'>update</a> <br/>\n";
+                 echo "<font color='blue'>$tuple[ssn]</font> $tuple[f_name] $tuple[m_name] $tuple[l_name] 
+                 <a href='./passengerForm.php?ssn=$tuple[ssn]&f_name=$tuple[f_name]&m_name=$tuple[m_name]&l_name=$tuple[l_name]&update=True'>update</a> 
+                 <br/>\n";
             }
 
             //disconnect from db

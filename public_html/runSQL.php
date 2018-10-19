@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <link rel="stylesheet" type="text/css" href="showPassengers.css">
+</head>
 <body>
+    <p>
+        <a href='index.php'>back</a>
+    </p>
 <h3>
     Enter SQL Query:
 </h3>

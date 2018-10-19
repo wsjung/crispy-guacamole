@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="showPassengers.css">
 </head>
 <body>
+    <p>
+        <a href='index.php'>back</a>
+    </p>
 <h2>Create new passenger</h2>
 <div>
     <span class="error">* required field</span><br><br>
@@ -37,7 +40,8 @@
             } ?>
             </span><br><br>
 
-    	<input type="submit">
+    	<input type="submit" <?php echo (isset($_GET['update'])) ? 'value="update" name="update"' : ' value="submit"'; ?> >
+    </form>
 </div>
 </body>
 </html>

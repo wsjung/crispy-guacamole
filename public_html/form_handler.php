@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="showPassengers.css">
+</head>
+<body>
 <?php
 	// hashmap of errors and error messages
 	$errors = array();
@@ -75,12 +81,14 @@
 			// true - if query worked
 			// false - if ssn already exists in relation
 			if($result) {
+				echo "<p><a href='passengerForm.php'>back</a></p>";
+
 				// success message
 				echo "Success!";
 
 				// reset session superglobal
-				session_unset();
-				session_destroy();
+				// session_unset();
+				// session_destroy();
 			} else {
 				// ssn already exists in table
 				$args['exists_ssn'] = True;
@@ -117,3 +125,5 @@
 		return $data;
 	}
 ?>
+</body>
+</html>
