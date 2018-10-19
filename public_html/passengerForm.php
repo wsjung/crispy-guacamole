@@ -5,7 +5,11 @@
 </head>
 <body>
     <p>
-        <a href='index.php'>back</a>
+        <a href=
+        <?php
+            echo (isset($_GET['update'])) ? '"./showPassengers.php"' : '"./index.php"'
+        ?>
+        >back</a>
     </p>
 <h2><?php echo (isset($_GET['update'])) ? 'Update existing' : 'Create new ';?> passenger</h2>
 <div>
@@ -38,9 +42,15 @@
             } else if (isset($_GET["exists_ssn"])) {
                 echo "passenger with ssn already exists";
             } ?>
-            </span><br><br>
 
-    	<input type="submit" <?php echo (isset($_GET['update'])) ? 'value="update" name="update"' : ' value="submit"'; ?> >
+            </span><br><br>
+            <?php
+            if(isset($_GET['ssn'])) {
+                echo '<input type="hidden" name="oldssn" value="'.$_GET['ssn'].'"/>';
+            }
+            ?>
+
+    	<input type="submit" <?php echo (isset($_GET['update'])) ? 'value="Update Info" name="update"' : ' value="submit"'; ?> />
     </form>
 </div>
 </body>

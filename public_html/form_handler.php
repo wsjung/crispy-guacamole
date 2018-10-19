@@ -65,37 +65,54 @@
 			// open connection to the airport databae file
 			$db = new PDO('sqlite:' . $db_file);
 
-			// check that the ssn does not already exist
+			// check whether update or not
+			if(isset($_POST['update'])) {
+				// update relation prepared statement
+				$stmt = $db->prepare("update passengers set f_name=(:f_name), m_name=(:m_name), l_name=(:l_name), ssn=(:ssn) where ssn=(:oldssn)");
 
-			// insert query prepared statement
-			$stmt = $db->prepare("insert into passengers (f_name,m_name,l_name,ssn) values (:f_name, :m_name, :l_name, :ssn)");
-			// bind parameters
-			$stmt->bindParam(':f_name', $f_name);
-			$stmt->bindParam(':m_name', $m_name);
-			$stmt->bindParam(':l_name', $l_name);
-			$stmt->bindParam(':ssn', $ssn);
-			// execute query
-			$result = $stmt->execute();
+				// bind parameters
+				$stmt->bindParam(':f_name', $f_name);
+				$stmt->bindParam(':m_name', $m_name);
+				$stmt->bindParam(':l_name', $l_name);
+				$stmt->bindParam(':ssn', $ssn);
+				$stmt->bindParam(':oldssn',$_POST['oldssn']);
 
-			// check that the query worked
-			// true - if query worked
-			// false - if ssn already exists in relation
-			if($result) {
-				echo "<p><a href='passengerForm.php'>back</a></p>";
+				// execute query
+				$result = $stmt->execute();
 
-				// success message
-				echo "Success!";
+				// redirect to now-updated passenger list
+				header('Location: ./showPassengers.php');
 
-				// reset session superglobal
-				// session_unset();
-				// session_destroy();
 			} else {
-				// ssn already exists in table
-				$args['exists_ssn'] = True;
+				// check that the ssn does not already exist
+				// insert query prepared statement
+				$stmt = $db->prepare("insert into passengers (f_name,m_name,l_name,ssn) values (:f_name, :m_name, :l_name, :ssn)");
+				// bind parameters
+				$stmt->bindParam(':f_name', $f_name);
+				$stmt->bindParam(':m_name', $m_name);
+				$stmt->bindParam(':l_name', $l_name);
+				$stmt->bindParam(':ssn', $ssn);
+				// execute query
+				$result = $stmt->execute();
 
-				// redirect back to the form
-				header('Location: ./passengerForm.php?' . http_build_query($args));
+				// check that the query worked
+				// true - if query worked
+				// false - if ssn already exists in relation
+				if($result) {
+					echo "<p><a href='passengerForm.php'>back</a></p>";
+
+					// success message
+					echo "Success!";
+				} else {
+					// ssn already exists in table
+					$args['exists_ssn'] = True;
+
+					// redirect back to the form
+					header('Location: ./passengerForm.php?' . http_build_query($args));
+				}
 			}
+
+			
 
 			// $result = $db->query("select * from passengers;");
 
