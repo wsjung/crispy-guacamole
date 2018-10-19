@@ -6,6 +6,12 @@
     <p>
         <a href='index.php'>back</a>
     </p>
+
+    <?php
+        echo (isset($_GET['success'])) ? 
+        '<p>success!</p>' : '';
+    ?>
+
 <h2>List of all passengers</h2>
 <p>
     <?php

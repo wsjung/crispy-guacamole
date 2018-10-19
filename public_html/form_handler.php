@@ -81,7 +81,7 @@
 				$result = $stmt->execute();
 
 				// redirect to now-updated passenger list
-				header('Location: ./showPassengers.php');
+				header('Location: ./showPassengers.php?success=1');
 
 			} else {
 				// check that the ssn does not already exist
@@ -99,10 +99,8 @@
 				// true - if query worked
 				// false - if ssn already exists in relation
 				if($result) {
-					echo "<p><a href='passengerForm.php'>back</a></p>";
-
-					// success message
-					echo "Success!";
+					// redirect to passenger list with success message
+					header('Location: ./showPassengers.php?success=1');
 				} else {
 					// ssn already exists in table
 					$args['exists_ssn'] = True;
