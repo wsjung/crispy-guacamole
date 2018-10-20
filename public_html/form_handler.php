@@ -107,6 +107,7 @@
 
 					// redirect back to the form
 					header('Location: ./passengerForm.php?' . http_build_query($args));
+					$db=null;
 				}
 			}
 
