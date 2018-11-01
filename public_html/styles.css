@@ -62,3 +62,9 @@ a:focus {
 a:active {
     color: white;
 }
+
+.article {
+	padding-left: 15%;
+	padding-right: 15%;
+	padding-bottom: 5%;
+}
